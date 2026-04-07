@@ -1,0 +1,12 @@
+services:
+  proxy:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+  api:
+    image: minha-api-dotnet-ou-node:latest
+    deploy:
+      replicas: 3 # O Nginx vai balancear entre elas se usar o nome do serviço
